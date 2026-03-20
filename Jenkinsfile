@@ -5,7 +5,7 @@ pipeline {
         REPO_NAME      = "test"             // change to "repo2" for second repo
         GIT_USER_EMAIL = "rohit.sharma@alliedmed.co.in"
         GIT_USER_NAME  = "Rohitsss-lab"
-        GIT_REPO_URL   = "https://github.com/dhanesh686-m/test.git" // change per repo
+        GIT_REPO_URL   = "https://github.com/Rohitsss-lab/test.git" // change per repo
     }
 
     stages {
