@@ -22,7 +22,7 @@ stage('Bump version') {
 
             // Hardcode full python path
             env.NEW_VERSION = bat(
-                script: "\"C:\Users\Rohit Sharma\AppData\Local\Microsoft\WindowsApps\python3.exe" bump_version.py ${params.BUMP_TYPE}",
+                script: "\"C:\Program Files\Python313\python.exe" bump_version.py ${params.BUMP_TYPE}",
                 returnStdout: true
             ).trim().readLines().last()
 
