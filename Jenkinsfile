@@ -19,7 +19,7 @@ pipeline {
                 script {
                     def currentVersion = readFile('VERSION').trim()
                     echo "Current version: ${currentVersion}"
-                    env.NEW_VERSION = sh(
+                    env.NEW_VERSION = bat(
                         script: "python3 bump_version.py patch",
                         returnStdout: true
                     ).trim()
@@ -34,7 +34,7 @@ pipeline {
                     usernameVariable: 'GIT_USER',
                     passwordVariable: 'GIT_TOKEN'
                 )]) {
-                    sh """
+                    bat """
                         git config user.email "${GIT_USER_EMAIL}"
                         git config user.name  "${GIT_USER_NAME}"
                         git remote set-url origin https://${GIT_USER}:${GIT_TOKEN}@github.com/Rohitsss-lab/test.git
