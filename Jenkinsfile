@@ -20,9 +20,10 @@ stage('Bump version') {
             def currentVersion = readFile('VERSION').trim()
             echo "Current version: ${currentVersion}"
 
-            // Hardcode full python path
+            def pythonPath = 'C:\\Program Files\\Python313\\python.exe'
+
             env.NEW_VERSION = bat(
-                script: "\"C:\Program Files\Python313\python.exe" bump_version.py ${params.BUMP_TYPE}",
+                script: "${pythonPath} bump_version.py ${params.BUMP_TYPE}",
                 returnStdout: true
             ).trim().readLines().last()
 
