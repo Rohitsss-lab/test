@@ -20,7 +20,7 @@ pipeline {
                     def currentVersion = readFile('VERSION').trim()
                     echo "Current version: ${currentVersion}"
                     env.NEW_VERSION = bat(
-                        script: "python3 bump_version.py patch",
+                        script: "python bump_version.py patch",
                         returnStdout: true
                     ).trim()
                     echo "New version: ${env.NEW_VERSION}"
