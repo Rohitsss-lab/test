@@ -14,19 +14,22 @@ pipeline {
                     url: env.GIT_REPO_URL
             }
         }
-        stage('Bump version') {
-            steps {
-                script {
-                    def currentVersion = readFile('VERSION').trim()
-                    echo "Current version: ${currentVersion}"
-                    env.NEW_VERSION = bat(
-                        script: "python3 bump_version.py patch",
-                        returnStdout: true
-                    ).trim()
-                    echo "New version: ${env.NEW_VERSION}"
-                }
-            }
+stage('Bump version') {
+    steps {
+        script {
+            def currentVersion = readFile('VERSION').trim()
+            echo "Current version: ${currentVersion}"
+
+            // Hardcode full python path
+            env.NEW_VERSION = bat(
+                script: "\"C:\Users\Rohit Sharma\AppData\Local\Microsoft\WindowsApps\python3.exe" bump_version.py ${params.BUMP_TYPE}",
+                returnStdout: true
+            ).trim().readLines().last()
+
+            echo "New version: ${env.NEW_VERSION}"
         }
+    }
+}
         stage('Commit new version') {
             steps {
                 withCredentials([usernamePassword(
